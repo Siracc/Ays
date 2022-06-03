@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody _playerRigidbody;
     [SerializeField] Animator _playerAnimator;
            
-    [SerializeField] float _horSpeed, _verSpeed, _force;
-    [SerializeField] bool _isHorizontalActive, _isVerticalActive, _isJumpActive;
+    [SerializeField] float _horSpeed, _verSpeed, _force, _fastRun;
+    [SerializeField] bool _isHorizontalActive, _isVerticalActive, _isJumpActive, _isFastActive;
 
     bool _isJump;
 
@@ -69,13 +69,10 @@ public class PlayerController : MonoBehaviour
 
     void FastRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.P))
         {
-            _moveController.Vertical(_playerTransform, _verSpeed, _isVerticalActive);
-            Debug.Log("Uieauiea");
-            _playerAnimator.SetBool("__Fast", true);
+            _playerTransform.Translate(Vector3.forward * _fastRun * Time.deltaTime);
+            _playerAnimator.SetFloat("__Fast", 1);
         }
-        else
-            _playerAnimator.SetBool("__Fast", false);
     }
 }

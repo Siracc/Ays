@@ -32,10 +32,21 @@ public class MoveController : IMove
         {
             case true:
                 _transform.Translate(Vector3.forward * _verticalSpeed * VerticalAxis);
-                //_transform.position += new Vector3(0, 0, VerticalAxis* _verticalSpeed);
                 break;
             default:
                 _isVerticalActive = false;
+                break;
+        }
+    }
+    public void FastRun(Transform _transform, float _fastSpeed, bool _isFastActive)
+    {
+        switch (_isFastActive)
+        {
+            case true:
+                _transform.Translate(Vector3.forward * _fastSpeed  * VerticalAxis);
+                break;
+            default:
+                _isFastActive = false;
                 break;
         }
     }
