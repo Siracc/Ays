@@ -6,16 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     MoveController _moveController;
 
-
-
     [SerializeField] Transform _playerTransform;
     [SerializeField] Rigidbody _playerRigidbody;
     [SerializeField] Animator _playerAnimator;
            
     [SerializeField] float _horSpeed, _verSpeed, _force, _fastRun;
+    [SerializeField] float mouseSensitivy;
     [SerializeField] bool _isHorizontalActive, _isVerticalActive, _isJumpActive, _isFastActive;
 
     bool _isJump;
+
+    private void Awake()
+    {
+        _moveController = new MoveController();
+    }
 
     private void Update()
     {
@@ -27,22 +31,13 @@ public class PlayerController : MonoBehaviour
             _isJump = false;
     }
 
-
-
-    private void Awake()
-    {
-        _moveController = new MoveController();
-    }
-
-
     private void FixedUpdate()
     {
         PlayerWalk();
         PlayerRotate();
-        FastRun();
         Jump();
+        Ax();
     }
-
 
     void PlayerWalk()
     {
@@ -67,12 +62,21 @@ public class PlayerController : MonoBehaviour
             _playerAnimator.SetBool("__Jump", false);
     }
 
-    void FastRun()
+    void Ax()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetMouseButton(0))
         {
-            _playerTransform.Translate(Vector3.forward * _fastRun * Time.deltaTime);
-            _playerAnimator.SetFloat("__Fast", 1);
+            //_isVerticalActive = false;
+            _playerAnimator.SetBool("__Ax", true);
+            //StartCoroutine(IsVertical());
         }
+        else
+            _playerAnimator.SetBool("__Ax", false);
+    }   
+
+    IEnumerator IsVertical()
+    {
+        yield return new WaitForSeconds(2.3f);
+        _isVerticalActive = true;
     }
 }

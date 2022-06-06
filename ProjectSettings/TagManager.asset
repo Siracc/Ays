@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tree
+  - Ax
+  - Grass
+  - Stone
+  - Red
+  - Wood
   layers:
   - Default
   - TransparentFX

@@ -38,18 +38,7 @@ public class MoveController : IMove
                 break;
         }
     }
-    public void FastRun(Transform _transform, float _fastSpeed, bool _isFastActive)
-    {
-        switch (_isFastActive)
-        {
-            case true:
-                _transform.Translate(Vector3.forward * _fastSpeed  * VerticalAxis);
-                break;
-            default:
-                _isFastActive = false;
-                break;
-        }
-    }
+    
 
 
     public void Jump(Rigidbody _rgdb, float _jumpForce, bool _isJumpActive)
