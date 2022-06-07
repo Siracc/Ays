@@ -6,14 +6,12 @@ public class TreeLife : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _logSound;
-
-    Rigidbody[] _childRg;
     
     [SerializeField] float _volume;
     [SerializeField] int _treeHealth;
     [SerializeField] bool _axActive;
 
-
+    Rigidbody[] _childRg;
 
     private void Awake()
     {
@@ -58,13 +56,12 @@ public class TreeLife : MonoBehaviour
 
     IEnumerator TreeDestroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         transform.DetachChildren();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
     
-
     void Rgidb()
     {
         foreach (Rigidbody rg in _childRg)

@@ -16,8 +16,7 @@ public class PickUp : MonoBehaviour
             Debug.DrawLine(transform.position, hit.point, Color.red);
 
             if (hit.distance <= _distance && hit.collider.gameObject.CompareTag("Red"))
-            {
-                
+            {                
                 if (Input.GetKeyUp(KeyCode.E))
                 {
                     Destroy(hit.collider.gameObject);
