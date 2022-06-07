@@ -20,14 +20,13 @@ public class PlayerStats : MonoBehaviour
     public Slider _healthSlider;
     float maxHealth;
 
-    [Header("Stat Penceresi")]
-    [SerializeField] GameObject _statScreen;
+  
 
     private void Awake()
     {
-        _hunger = PlayerPrefs.GetFloat("Hunger");
-        _thirst = PlayerPrefs.GetFloat("Thirst");
-        _health = PlayerPrefs.GetFloat("Health");
+        _hunger = _hungerSlider.value;
+        _thirst = _thirstSlider.value;
+        _health = _healthSlider.value;
     }
 
     private void Start()
@@ -44,7 +43,7 @@ public class PlayerStats : MonoBehaviour
         _healthSlider.value = _health;
 
         //Açlýk
-        _hunger -= 0.5f * Time.deltaTime;
+        _hunger -= 0.1f * Time.deltaTime;
 
         //Açlýk Sýnýrý
         if (_hunger >= maxHunger)
@@ -55,11 +54,11 @@ public class PlayerStats : MonoBehaviour
         if (_hunger <= 0)
         {
             _hunger = 0;
-            _health -= 0.5f * Time.deltaTime;
+            _health -= 0.05f * Time.deltaTime;
         }
 
         //Susuzluk
-        _thirst -= 1f * Time.deltaTime;
+        _thirst -= 0.2f * Time.deltaTime;
 
         //Susuzluk Sýnýrý
         if (_thirst >= maxThirst)
@@ -71,17 +70,6 @@ public class PlayerStats : MonoBehaviour
         {
             _thirst = 0;
             _health -= 2f * Time.deltaTime;
-        }
-
-        //Taba basýldýðýnda ekranda göster.
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            _statScreen.SetActive(true);
-        }
-
-        else
-        {
-            _statScreen.SetActive(false);
         }
 
         //Hasar alma test.
