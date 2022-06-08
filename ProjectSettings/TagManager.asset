@@ -10,6 +10,7 @@ TagManager:
   - Stone
   - Red
   - Wood
+  - PlayerBox
   layers:
   - Default
   - TransparentFX

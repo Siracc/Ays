@@ -25,13 +25,18 @@ public class TreeLife : MonoBehaviour
             _axActive = true;
             StartCoroutine(AxActive());
         }
-        
+
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+        {
+            _axActive = false;
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ax"))
-        {
+        {           
             if (_axActive)
             {
                 _audioSource.PlayOneShot(_logSound, _volume);
